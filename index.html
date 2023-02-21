@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <script src="./jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" href="./base.css">
+
+  <style>
+    .box {
+      display: flex;
+      height: 90vh;
+    }
+
+    .itxst {
+      height: 80vh;
+      flex-shrink:0 ;
+      border-radius: 8px;
+      background-color: #F6F9FE;
+      padding-top:40px ;
+      /* padding-bottom: 100px; */
+      margin: 10px auto;
+      width: 250px;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .itemtop {
+      border-radius: 8px;
+      height: 50px;
+      line-height: 50px;
+      background-color: #E1EAFE;
+      font-size: 17px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .itxst .item {
+      text-align: center;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 20px;
+      /* height: 35px; */
+      background-color: #fdfdfd;
+      /* border: solid 1px #eee; */
+      /* display: flex; */
+      cursor: pointer;
+    }
+
+    .item input {
+      margin-left: 30px;
+      height: 20px;
+    }
+
+    .itxst2 {
+      flex-shrink:0 ;
+      /* padding-bottom: 100px; */
+
+      padding-top: 40px; 
+      padding-left: 80px;
+      background-color: #dbdfe7;
+      margin: 10px auto;
+      width: 1200px;
+      margin-right: 10px;
+      height: 80vh;
+
+      border-radius: 8px;
+    }
+
+    #jointable {
+      margin-top: 20px;
+      display: flex;
+      /* justify-content: space-evenly; */
+    }
+
+    #joinitem {
+      /* flex-shrink: 0; */
+      border-radius: 8px;
+      padding-top: 15px;
+      width: 300px;
+      height: 35px;
+      margin-left: 70px;
+      cursor: pointer;
+      display: flex;
+      background-color: aqua;
+      justify-content: center;
+    }
+
+    #joinitem input {
+      margin-left: 30px;
+      height: 20px;
+    }
+
+    .itxst3 {
+      padding-top:40px ;
+
+      flex-shrink:0 ;
+      border-radius: 8px;
+      background-color: #F6F9FE;
+      margin: 10px auto;
+      width: 300px;
+      float: left;
+      margin-right: 10px;
+      height: 80vh;
+      /* padding-bottom: 100px; */
+
+    }
+
+    .widthc {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 15px;
+      margin-top: 30px;
+      background-color: #fdfdfd;
+      display: flex;
+    }
+
+    .widthc select {
+      margin-left: 40px;
+      height: 20px;
+      width: 50px;
+      height: 30px;
+    }
+
+    .active {
+      background-color: orange !important;
+      color: rgb(0, 0, 0);
+    }
+
+    .myButton {
+
+      box-shadow: inset 0px 1px 0px 0px #dcecfb;
+      background: linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+      background-color: #bddbfa;
+      border-radius: 6px;
+      border: 1px solid #84bbf3;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #528ecc;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+
+    .myButton:hover {
+      background: linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
+      background-color: #80b5ea;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+
+    /* .onpost {
+      margin-bottom: 150px;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div id="g1" class="itxst">
+      <div class="itemtop">选择字段</div>
+      <div class="item" data-id="1">
+        <p>文件级档号</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="2">
+        <p>全宗号</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="3">
+        <p>案卷号</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="4">
+        <p>年号</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="5">
+        <p>档案·年度</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="6">
+        <p>姓名</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="7">
+        <p>文号</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="8">
+        <p>密级1</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="9">
+        <p>密级2</p>
+        <!-- <input type="text"> -->
+      </div>
+      <div class="item" data-id="10">
+        <p>密级3</p>
+        <!-- <input type="text"> -->
+      </div>
+    </div>
+    <div id="g2" class="itxst2">
+      <div id="jointable">
+        <div id="joinitem" class="active">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+      </div>
+      <div id="jointable">
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+      </div>
+      <div id="jointable">
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+      </div>
+      <div id="jointable">
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+      </div>
+      <div id="jointable">
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+        <div id="joinitem">
+
+        </div>
+      </div>
+    </div>
+
+    <div id="g3" class="itxst3">
+      <div class="itemtop">布局设计设置</div>
+      <div class="widthc">
+        <p>宽度(设置1,2,3)</p>
+        <select name="" id="selectA">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+
+      </div>
+      <div>
+        <a href="#" class="myButton">删除</a>
+        <a href="#" class="myButton  onpost">提交</a>
+
+      </div>
+      <!-- <div>
+        <a href="#" class="myButton  onpost">提交</a>
+      </div> -->
+    </div>
+  </div>
+  <script>
+
+    $(document).on('click', '.onpost', function (e) {
+      let arrc = $(".postmsg")
+      var numArr = new Array();
+      $('.postval').each(function () {
+        numArr.push($(this).val());
+      });
+
+      for (let index = 0; index < arrc.length; index++) {
+        console.log(arrc[index].innerText + ":" + numArr[index]);
+      }
+    })
+
+    $(document).on('click', '#jointable #joinitem', function () {
+      $('#jointable #joinitem').removeClass("active");
+      $(this).addClass("active");
+      if ($('.active').width() == "1025") {
+        $('#selectA').val(3)
+      }
+      if ($('.active').width() == "660") {
+        $('#selectA').val(2)
+      }
+      if ($('.active').width() == "300") {
+        $('#selectA').val(1)
+      }
+    })
+
+    $(document).on('click', '.myButton', function (e) {
+      $('.active').html('')
+    })
+
+    $(document).on('click', '.itxst .item', function (e) {
+      var c = $(this).html()
+      // var c="<div id='joinitem iteminput'></div>"
+      $('.active').html(c)
+      $('.active').addClass("postmsg");
+      $('.active').children("input").addClass("postval");
+    })
+// $('.itxst .item').one('click',function (e) {
+//   var c = $(this).html()
+//       // var c="<div id='joinitem iteminput'></div>"
+//       $('.active').html(c)
+//       $('.active').addClass("postmsg");
+//       $('.active').children("input").addClass("postval");
+// })
+
+    $('#selectA').change(function (e) {
+      if ($(this).val() == 3) {
+        if ($('.active').prevAll()) {
+          $('.active').prevAll().remove()
+        }
+        $('.active').css('width', "1040")
+        $('.active').nextAll().remove()
+      } else if ($(this).val() == 2) {
+        if ($('.active').width() == "1040") {
+          $('.active').after("<div id='joinitem'></div>")
+        }
+        if ($('.active').width() == "300") {
+          if ($('.active').next().length == 0) {
+            $('.active').prev().remove()
+          } else {
+            $('.active').next().remove()
+          }
+
+        }
+        $('.active').css('width', "670px")
+      } else {
+        if ($('.active').width() == "1040") {
+          $('.active').after("<div id='joinitem'></div>")
+          $('.active').after("<div id='joinitem'></div>")
+        }
+        if ($('.active').width() == "670") {
+          $('.active').after("<div id='joinitem'></div>")
+        }
+        $('.active').css('width', "300px")
+      }
+    })
+  </script>
+</body>
+
+</html>
