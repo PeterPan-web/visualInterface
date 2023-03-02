@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <script src="./jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" href="./base.css">
+
+  <style>
+    .box {
+      display: flex;
+      height: 90vh;
+    }
+
+    .itxst {
+      height: 80vh;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: #F6F9FE;
+      padding-top: 40px;
+      margin: 10px auto;
+      width: 250px;
+      float: left;
+      margin-left: 10px;
+    }
+
+    .itemtop {
+      border-radius: 8px;
+      height: 50px;
+      line-height: 50px;
+      background-color: #E1EAFE;
+      font-size: 17px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .itemBot {
+      height: 74vh;
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 10px;
+      overflow-y: scroll;
+
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.1);
+      box-shadow: inset006px rgba(0, 0, 0, 0.5);
+    }
+
+    .itemBot .item {
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 8px;
+      padding: 10px 5px;
+      margin-top: 20px;
+      background-color: #fdfdfd;
+      margin-left: 15px;
+      cursor: pointer;
+      width: 80px;
+      box-shadow: 10px 5px 7px #888888;
+    }
+
+    .item input {
+      margin-left: 30px;
+      height: 20px;
+    }
+
+    .itxst2 {
+      flex-shrink: 0;
+      /* padding-bottom: 100px; */
+      padding-top: 40px;
+      padding-left: 80px;
+      background-color: #dbdfe7;
+      margin: 10px auto;
+      /* margin-right: 100px; */
+      height: 80vh;
+      border-radius: 8px;
+    }
+
+    .jointable {
+      width: 1000px;
+      margin-top: 25px;
+      display: flex;
+      /* justify-content: space-around; */
+    }
+
+    .joinitem {
+      /* flex-shrink: 0; */
+      border-radius: 8px;
+      padding-top: 15px;
+      width: 300px;
+      height: 35px;
+      margin-right: 25px;
+      cursor: pointer;
+      background-color: aqua;
+      text-align: center;
+    }
+
+    .itxst3 {
+      padding-top: 40px;
+
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: #F6F9FE;
+      margin: 10px auto;
+      width: 300px;
+      float: left;
+      margin-right: 10px;
+      height: 80vh;
+      /* padding-bottom: 100px; */
+
+    }
+
+    .widthc {
+
+      border-radius: 8px;
+      box-shadow: 10px 5px 7px #888888;
+      width: 150px;
+      height: 30px;
+      line-height: 30px;
+      padding-left: 30px;
+      margin-top: 30px;
+      margin-left: 30px;
+      background-color: #fdfdfd;
+      display: flex;
+    }
+
+    .widthc select {
+
+      margin-left: 20px;
+      height: 20px;
+      width: 50px;
+      height: 30px;
+    }
+
+    .active {
+      background-color: orange !important;
+      color: rgb(0, 0, 0);
+    }
+
+    .myButton {
+      box-shadow: inset 0px 1px 0px 0px #dcecfb;
+      background: linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+      background-color: #bddbfa;
+      border-radius: 6px;
+      border: 1px solid #84bbf3;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #528ecc;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+
+    .myButton:hover {
+      background: linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
+      background-color: #80b5ea;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+
+    .myButton2 {
+
+      box-shadow: inset 0px 1px 0px 0px #dcecfb;
+      background: linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+      background-color: #bddbfa;
+      border-radius: 6px;
+      border: 1px solid #84bbf3;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #528ecc;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+
+    .myButton2:hover {
+      background: linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
+      background-color: #80b5ea;
+    }
+
+    .myButton2:active {
+      position: relative;
+      top: 1px;
+    }
+
+    /* .onpost {
+      margin-bottom: 150px;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div id="g1" class="itxst">
+      <div class="itemtop">选择字段</div>
+      <div class="itemBot">
+        <div class="item" data-id="1">
+          <p>文件级档号</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="2">
+          <p>全宗号</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="3">
+          <p>案卷号</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="4">
+          <p>年号</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="5">
+          <p>档案·年度</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="6">
+          <p>姓名</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="7">
+          <p>文号</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="9">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="10">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="11">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="12">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="13">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="14">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="15">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="16">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="17">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="18">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="19">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="20">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+        <div class="item" data-id="8">
+          <p>密级1</p>
+          <!-- <input type="text"> -->
+        </div>
+      </div>
+
+
+    </div>
+    <div id="g2" class="itxst2">
+      <div class="jointable" class="line1">
+        <div class="joinitem active">
+          <p></p>
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+      <div class="jointable" class="line2">
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+      <div class="jointable" class="line3">
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+      <div class="jointable" class="line4">
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+      <div class="jointable" class="line5">
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+      <div class="jointable" class="line6">
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+        <div class="joinitem">
+          <p></p>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="g3" class="itxst3">
+      <div class="itemtop">布局设计设置</div>
+      <div class="widthc">
+        <p>宽度</p>
+        <select name="" id="selectA">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+
+      </div>
+      <div>
+        <a href="#" class="myButton">删除</a>
+        <a href="#" class="myButton2  onpost">提交</a>
+
+      </div>
+      <!-- <div>
+        <a href="#" class="myButton  onpost">提交</a>
+      </div> -->
+    </div>
+  </div>
+  <script>
+
+    $(document).on('click', '.onpost', function (e) {
+      let postnum1 = []
+      let postnum2 = []
+      let postnum3 = []
+      let postnum4 = []
+      let postnum5 = []
+      let postnum6 = []
+
+      let postnum = {
+        postnum1, postnum2, postnum3, postnum4, postnum5, postnum6
+      }
+      $(".line1").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum1.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum1.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum1.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+
+      $(".line2").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum2.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum2.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum2.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+      $(".line3").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum3.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum3.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum3.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+      $(".line4").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum4.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum4.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum4.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+      $(".line5").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum5.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum5.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum5.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+      $(".line6").children(".joinitem").each(function () {
+        let indexnum = $(this).width()
+        if (indexnum == 300) {
+          let postList = 1
+          postnum6.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 625) {
+          let postList = 2
+          postnum6.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+        if (indexnum == 950) {
+          let postList = 3
+          postnum6.push([{
+            name: $(this).children("p").text(),
+            row: 1,
+            List: postList,
+          }])
+        }
+      })
+
+      console.log(postnum)
+    })
+    $(document).on('click', ' .joinitem', function (e) {
+      $('.joinitem').removeClass("active")
+      $(this).addClass("active")
+      $('.joinitem').off()
+      bindResize(this)
+      judgeW()
+    })
+    function judgeW () {
+      if ($('.active').width() == "950") {
+        $('#selectA').val(3)
+      }
+      if ($('.active').width() == "625") {
+        $('#selectA').val(2)
+      }
+      if ($('.active').width() == "300") {
+        $('#selectA').val(1)
+      }
+    }
+    $(document).on('click', '.myButton', function (e) {
+      $('.active').html('')
+    })
+    var ifarry = []
+    $(document).on('click', '.itxst .item', function (e) {
+      let iftext = $(this).children("p").text()
+      let addtext = $('.active').children("p").text()
+      let ifnum = ifarry.indexOf(iftext)
+      if (addtext === '') {
+        if (ifnum === -1) {
+          ifarry.push(iftext)
+          var c = $(this).html()
+          $('.active').html(c)
+          $('.active').addClass("postmsg")
+          console.log(1)
+        } else {
+          console.log(2)
+          alert("相同字段只能设置一次")
+        }
+      }
+      else {
+        if (ifnum === -1) {
+          ifarry.pop()
+          ifarry.push(iftext)
+          var c = $(this).html()
+          $('.active').html(c)
+          $('.active').addClass("postmsg")
+          console.log(3)
+        } else {
+          console.log(4)
+          alert("相同字段只能设置一次")
+        }
+      }
+      console.log(ifarry)
+
+    })
+    $('#selectA').change(function (e) {
+      if ($(this).val() == 3) {
+        if ($('.active').prevAll()) {
+          $('.active').prevAll().remove()
+        }
+        $('.active').css('width', "950")
+        $('.active').nextAll().remove()
+      } else if ($(this).val() == 2) {
+        if ($('.active').width() == "950") {
+          $('.active').after("<div class='joinitem'><p></p></div>")
+        }
+        if ($('.active').width() == "300") {
+          if ($('.active').next().length == 0) {
+            $('.active').prev().remove()
+          } else {
+            $('.active').next().remove()
+          }
+
+        }
+        $('.active').css('width', "625px")
+      } else {
+        if ($('.active').width() == "950") {
+          $('.active').after("<div class='joinitem'><p></p></div>")
+          $('.active').after("<div class='joinitem'><p></p></div>")
+        }
+        if ($('.active').width() == "625") {
+          $('.active').after("<div class='joinitem'><p></p></div>")
+        }
+        $('.active').css('width', "300px")
+      }
+    })
+
+    // $(function () {
+    //   //绑定需要拖拽改变大小的元素对象
+    //   for (let index = 0; index < 20; index++) {
+    //    bindResize(document.getElementsByClassName('joinitem')[index]);       
+    //   }
+    // });
+
+    $(function () {
+      //绑定需要拖拽改变大小的元素对象
+      bindResize(document.getElementsByClassName('active')[0])
+    })
+
+    function bindResize (el) {
+      var indexX = 0
+      //初始化参数
+      var els = el.style,
+        //鼠标的 X 和 Y 轴坐标
+        x = y = 0
+      let indexwidth = $('.active').width()
+      let indexleft = $('.active').prevAll().length
+      let indexright = $('.active').nextAll().length
+      let indexnum = $('.active').siblings().length
+
+      // console.log(indexwidth, indexleft, indexright, indexnum)
+      //邪恶的食指
+      // let indexwidth = $(el).width()
+      // let indexleft = $(el).prevAll().length
+      // let indexright = $(el).nextAll().length
+      // let indexnum = $(el).siblings().length
+      $(el).mousedown(function (e) {
+        //按下元素后，计算当前鼠标与对象计算后的坐标
+        x = e.clientX - el.offsetWidth,
+          // y = e.clientY - el.offsetHeight
+          //在支持 setCapture 做些东东
+          el.setCapture ? (
+            //捕捉焦点
+            el.setCapture(),
+            //设置事件
+            el.onmousemove = function (ev) {
+              mouseMove(ev || event)
+            },
+            // el.onmouseup = mouseUp;
+            el.onmouseup = function (ev) {
+              onmouseUp(ev || event)
+            }
+          ) : (
+            //绑定事件
+            $(document).bind("mousemove", mouseMove).bind("mouseup", mouseUp)
+          )
+        //防止默认事件发生
+        e.preventDefault()
+      })
+      //移动事件
+      function mouseMove (e) {
+        //宇宙超级无敌运算中...
+        els.width = e.clientX - x + 'px'
+        //  console.log(els.width);
+        els.height = e.clientY - y + 'px'
+        els.height = 35 + 'px'
+      }
+
+      // }
+      //停止事件
+      function mouseUp (e) {
+        if (indexnum == 2) {
+          if (indexleft == 0) {
+            if (e.clientX - x > 300 && e.clientX - x < 625) {
+              els.width = 625 + "px"
+              $('.active').nextAll().remove()
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+            if (e.clientX - x > 625) {
+              els.width = 950 + "px"
+              $('.active').nextAll().remove()
+            }
+            if (e.clientX - x < 300) {
+              els.width = 300 + "px"
+              $('.active').nextAll().remove()
+              $('.active').after("<div class='joinitem'><p></p></div>")
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+          }
+          if (indexleft == 1) {
+            if (e.clientX - x > 50) {
+              els.width = 625 + "px"
+              $('.active').nextAll().remove()
+            }
+            if (e.clientX - x < 300) {
+              els.width = 300 + "px"
+              $('.active').nextAll().remove()
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+          }
+          if (indexleft == 2) {
+            els.width = 300 + "px"
+          }
+        }
+        if (indexnum == 1) {
+          if (indexleft == 1) {
+            if (e.clientX - x < 300) {
+              els.width = 300 + "px"
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+          }
+          if (indexleft == 0) {
+            if (e.clientX - x > 300 && e.clientX - x < 625) {
+              els.width = 625 + "px"
+              $('.active').nextAll().remove()
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+            if (e.clientX - x > 625) {
+              els.width = 950 + "px"
+              $('.active').nextAll().remove()
+            }
+            if (e.clientX - x < 300) {
+              els.width = 300 + "px"
+              $('.active').nextAll().remove()
+              $('.active').after("<div class='joinitem'><p></p></div>")
+              $('.active').after("<div class='joinitem'><p></p></div>")
+            }
+          }
+        }
+
+        //在支持 releaseCapture 做些东东
+        el.releaseCapture ? (
+          //释放焦点
+          el.releaseCapture(),
+          //移除事件
+          el.onmousemove = el.onmouseup = null
+        ) : (
+          //卸载事件
+          $(document).unbind("mousemove", mouseMove).unbind("mouseup", mouseUp)
+        )
+        judgeW()
+      }
+
+    }
+  </script>
+</body>
+
+</html>
